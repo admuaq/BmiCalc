@@ -48,60 +48,73 @@ namespace BmiCalc
                     continue;
                 }
 
-                //Requests users height
-                Console.WriteLine("Please enter your height in cm: ");
-                var height = Console.ReadLine();
-
-                int heightInput;
-                try
+                bool heightLoop = true;
+                int heightInput=0;
+                while(heightLoop == true)
                 {
-                    heightInput = Convert.ToInt32(height);
+                    //Requests users height
+                    Console.WriteLine("Please enter your height in cm: ");
+                    var height = Console.ReadLine();
 
-                    if (heightInput < 0 || heightInput > 200)
+                    try
                     {
-                        Console.WriteLine("Surely you aren't " + heightInput + " cm tall!.\n");
+                        heightInput = Convert.ToInt32(height);
+
+                        if (heightInput < 0 || heightInput > 200)
+                        {
+                            Console.WriteLine("Surely you aren't " + heightInput + " cm tall!.\n");
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("You are " + heightInput + " cm tall.\n");
+                            heightLoop = false;
+                            break;
+                        }
+                    continue;
+                    }
+
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Please write a valid input.\n");
                         continue;
                     }
+                }
 
-                    else
+                bool weightLoop = true;
+                double weightInput = 0;
+
+                while (weightLoop == true)
+                {
+                    //Requests Users Weight
+                    Console.WriteLine("What is your weight in kg?: ");
+                    var weight = Console.ReadLine();
+
+
+                    try
                     {
-                        Console.WriteLine("You are " + heightInput + " cm tall.\n"); ;
+                        weightInput = Convert.ToDouble(weight);
+
+                        if (weightInput < 0 || weightInput > 200)
+                        {
+                            Console.WriteLine("Surely you aren't " + weightInput + " kg heavy!.\n");
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("You weigh " + weightInput + " kg.\n");
+                            weightLoop = false;
+                            break;
+                        }
                     }
-                }
 
-                catch (FormatException)
-                {
-                    Console.WriteLine("Please write a valid input.\n");
-                    continue;
-                }
-                
-
-                //Requests Users Weight
-                Console.WriteLine("What is your weight in kg?: ");
-                var weight = Console.ReadLine();
-
-                double weightInput;
-                try
-                {
-                    weightInput = Convert.ToDouble(weight);
-
-                    if (weightInput < 0 || weightInput > 200)
+                    catch (FormatException)
                     {
-                        Console.WriteLine("Surely you aren't " + weightInput + " kg heavy!.\n");
+                        Console.WriteLine("Please write a valid input.\n");
                         continue;
                     }
-
-                    else
-                    {
-                        Console.WriteLine("You weigh " + weightInput + " kg.\n"); ;
-                    }
                 }
-
-                catch (FormatException)
-                {
-                    Console.WriteLine("Please write a valid input.\n");
-                    continue;
-                }
+               
 
 
                 //Calculate BMI
